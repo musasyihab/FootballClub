@@ -7,7 +7,6 @@ import com.musasyihab.footballclub.model.ClubModel
 import com.musasyihab.footballclub.view.ClubDetailView
 import org.jetbrains.anko.longToast
 import org.jetbrains.anko.setContentView
-import org.jetbrains.anko.toast
 
 class ClubDetailActivity : AppCompatActivity() {
 
