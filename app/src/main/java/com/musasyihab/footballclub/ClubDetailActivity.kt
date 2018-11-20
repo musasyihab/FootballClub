@@ -5,7 +5,9 @@ import android.support.v7.app.ActionBar
 import android.support.v7.app.AppCompatActivity
 import com.musasyihab.footballclub.model.ClubModel
 import com.musasyihab.footballclub.view.ClubDetailView
+import org.jetbrains.anko.longToast
 import org.jetbrains.anko.setContentView
+import org.jetbrains.anko.toast
 
 class ClubDetailActivity : AppCompatActivity() {
 
@@ -28,6 +30,8 @@ class ClubDetailActivity : AppCompatActivity() {
 
         clubItem = getData(index)
         actionBar.title = clubItem.name
+
+        longToast(clubItem.name)
 
         ClubDetailView(clubItem).setContentView(this)
 
