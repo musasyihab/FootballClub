@@ -52,7 +52,7 @@ class ClubItemView : AnkoComponent<ViewGroup> {
                 textView {
                     id = tvClubName
                     textSize = 20f
-                    typeface = Typeface.DEFAULT_BOLD// Typeface.createFromAsset(ctx.assets, "fonts/Roboto-Bold.ttf")
+                    typeface = Typeface.DEFAULT_BOLD
                 }.lparams(matchParent, wrapContent)
             }
 

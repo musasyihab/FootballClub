@@ -18,9 +18,8 @@ class MainActivityView (private val mAdapter: ClubItemAdapter) : AnkoComponent<M
 
     override fun createView(ui: AnkoContext<MainActivity>): View = with(ui){
         verticalLayout {
-            lparams(matchParent, matchParent) {
-                gravity = Gravity.CENTER
-            }
+            lparams(matchParent, matchParent)
+            gravity = Gravity.CENTER
             backgroundColor = ContextCompat.getColor(ctx, R.color.background)
 
             recyclerView {

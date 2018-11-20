@@ -1,8 +1,8 @@
 package com.musasyihab.footballclub
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
 import com.musasyihab.footballclub.adapter.ClubItemAdapter
 import com.musasyihab.footballclub.model.ClubModel
 import com.musasyihab.footballclub.view.MainActivityView
@@ -43,7 +43,9 @@ class MainActivity : AppCompatActivity() {
     private inner class ClubListAdapterListener : ClubItemAdapter.Listener {
 
         override fun onItemClicked(item: ClubModel, position: Int) {
-            Toast.makeText(this@MainActivity, "Club: "+item.name, Toast.LENGTH_SHORT).show()
+            val detailIntent = Intent(this@MainActivity, ClubDetailActivity::class.java)
+            detailIntent.putExtra(ClubDetailActivity.EXTRA.INDEX, position)
+            startActivity(detailIntent)
         }
 
     }
