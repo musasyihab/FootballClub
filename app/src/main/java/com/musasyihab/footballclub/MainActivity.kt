@@ -2,38 +2,27 @@ package com.musasyihab.footballclub
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.widget.Toast
 import com.musasyihab.footballclub.adapter.ClubItemAdapter
 import com.musasyihab.footballclub.model.ClubModel
+import com.musasyihab.footballclub.view.MainActivityView
+import org.jetbrains.anko.*
 import java.util.*
 import kotlin.collections.ArrayList
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var list: RecyclerView
-    private lateinit var linearLayoutManager: LinearLayoutManager
     private lateinit var adapter: ClubItemAdapter
     private var clubItems: ArrayList<ClubModel> = ArrayList(Collections.emptyList())
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-
-        initView()
-    }
-
-    private fun initView() {
-        list = findViewById(R.id.club_list)
-
-        linearLayoutManager = LinearLayoutManager(this)
-        list.layoutManager = linearLayoutManager
 
         clubItems = generateData()
-
         adapter = ClubItemAdapter(clubItems, this, ClubListAdapterListener())
-        list.adapter = adapter
+
+        MainActivityView(adapter).setContentView(this)
+
     }
 
     private fun generateData(): ArrayList<ClubModel> {

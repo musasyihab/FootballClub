@@ -2,7 +2,6 @@ package com.musasyihab.footballclub.adapter
 
 import android.content.Context
 import android.support.v7.widget.RecyclerView
-import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
@@ -12,11 +11,12 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.musasyihab.footballclub.R
 import com.musasyihab.footballclub.model.ClubModel
+import com.musasyihab.footballclub.view.ClubItemView
+import org.jetbrains.anko.AnkoContext
 
 class ClubItemAdapter(private val mList: ArrayList<ClubModel>,
                         context: Context, adapterListener: ClubItemAdapter.Listener) : RecyclerView.Adapter<ClubItemAdapter.ItemHolder>() {
 
-    private val mInflater: LayoutInflater = LayoutInflater.from(context)
     private val adapterListener: ClubItemAdapter.Listener = adapterListener
     private val listener: ClubHolderListener
 
@@ -32,8 +32,7 @@ class ClubItemAdapter(private val mList: ArrayList<ClubModel>,
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ClubItemAdapter.ItemHolder {
-        val inflater = mInflater.inflate(R.layout.club_item_layout, parent,false)
-        return ItemHolder(inflater, listener)
+        return ItemHolder(ClubItemView().createView(AnkoContext.create(parent.context, parent)), listener)
     }
 
     interface Listener {
@@ -49,9 +48,10 @@ class ClubItemAdapter(private val mList: ArrayList<ClubModel>,
         var layout: LinearLayout
 
         init {
-            icon = view.findViewById(R.id.club_item_icon) as ImageView
-            name = view.findViewById(R.id.club_item_name) as TextView
-            layout = view.findViewById(R.id.club_item_layout) as LinearLayout
+
+            icon = view.findViewById(ClubItemView.imgClubIcon)
+            name = view.findViewById(ClubItemView.tvClubName)
+            layout = view.findViewById(ClubItemView.layoutClub)
 
         }
 
