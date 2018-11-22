@@ -3,10 +3,11 @@ package com.musasyihab.footballclub
 import android.os.Bundle
 import android.support.v7.app.ActionBar
 import android.support.v7.app.AppCompatActivity
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.musasyihab.footballclub.model.ClubModel
-import com.musasyihab.footballclub.view.ClubDetailView
 import org.jetbrains.anko.longToast
-import org.jetbrains.anko.setContentView
+import kotlinx.android.synthetic.main.club_detail_activity.*
 
 class ClubDetailActivity : AppCompatActivity() {
 
@@ -20,6 +21,7 @@ class ClubDetailActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.club_detail_activity)
 
         actionBar = supportActionBar!!
 
@@ -30,9 +32,16 @@ class ClubDetailActivity : AppCompatActivity() {
         clubItem = getData(index)
         actionBar.title = clubItem.name
 
-        longToast(clubItem.name)
+        clubDetailName.text = clubItem.name
+        clubDetailInfo.text = clubItem.info
 
-        ClubDetailView(clubItem).setContentView(this)
+        Glide.with(this).load(clubItem.icon)
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .fitCenter()
+                .error(R.drawable.ic_photo_black)
+                .into(clubDetailIcon)
+
+        longToast(clubItem.name)
 
     }
 
